@@ -29,7 +29,7 @@ metadata:
 
 i18n:
   language: en
-  textDirection: ltr
+  textDirection: rtl
 
 apps:
   blog:

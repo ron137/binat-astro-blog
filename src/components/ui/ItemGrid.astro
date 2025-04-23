@@ -3,8 +3,27 @@ import type { ItemGrid as Props } from '~/types';
 import { twMerge } from 'tailwind-merge';
 import Button from './Button.astro';
 import { Icon } from 'astro-icon/components';
+import { I18N } from 'astrowind:config';
 
 const { items = [], columns, defaultIcon = '', classes = {} } = Astro.props;
+const { textDirection } = I18N;
+
+// Handle direction-sensitive icons
+const getDirectionAwareIcon = (iconName: string) => {
+  if (!iconName) return '';
+  
+  // Handle common direction-sensitive icons
+  if (textDirection === 'rtl') {
+    if (iconName === 'tabler:chevron-right') return 'tabler:chevron-left';
+    if (iconName === 'tabler:chevrons-right') return 'tabler:chevrons-left';
+    if (iconName === 'tabler:arrow-right') return 'tabler:arrow-left';
+    if (iconName === 'tabler:arrow-narrow-right') return 'tabler:arrow-narrow-left';
+  }
+  
+  return iconName;
+};
+
+const directionAwareDefaultIcon = getDirectionAwareIcon(defaultIcon);
 
 const {
   container: containerClass = '',
@@ -36,9 +55,9 @@ const {
         <div class="intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
           <div class={twMerge('flex flex-row max-w-md', panelClass, itemClasses?.panel)}>
             <div class="flex justify-center">
-              {(icon || defaultIcon) && (
+              {(icon || directionAwareDefaultIcon) && (
                 <Icon
-                  name={icon || defaultIcon}
+                  name={getDirectionAwareIcon(icon) || directionAwareDefaultIcon}
                   class={twMerge('w-7 h-7 mr-2 rtl:mr-0 rtl:ml-2', defaultIconClass, itemClasses?.icon)}
                 />
               )}
@@ -53,7 +72,10 @@ const {
               )}
               {callToAction && (
                 <div class={twMerge(`${title || description ? 'mt-3' : ''}`, actionClass, itemClasses?.actionClass)}>
-                  <Button variant="link" {...callToAction} />
+                  <Button variant="link" {...callToAction && {
+                    ...callToAction,
+                    icon: callToAction.icon ? getDirectionAwareIcon(callToAction.icon) : undefined
+                  }} />
                 </div>
               )}
             </div>
