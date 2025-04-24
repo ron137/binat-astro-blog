@@ -1,160 +1,179 @@
 ---
-import Layout from '~/layouts/LandingLayout.astro';
+import Layout from '~/layouts/PageLayout.astro';
+
 import Header from '~/components/widgets/Header.astro';
+
 import Hero2 from '~/components/widgets/Hero2.astro';
-import Features from '~/components/widgets/Features.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Features3 from '~/components/widgets/Features3.astro';
 import Content from '~/components/widgets/Content.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
-import CallToAction from '~/components/widgets/CallToAction.astro';
-import Testimonials from '~/components/widgets/Testimonials.astro';
 
 import Button from '~/components/ui/Button.astro';
 import Image from '~/components/common/Image.astro';
 
-const metadata = {
-  title: 'Mobile App Homepage Demo',
-};
-
-const appStoreImg = '~/assets/images/app-store.png';
-const googlePlayImg = '~/assets/images/google-play.png';
+const appStoreImg = 'https://raw.githubusercontent.com/onwidget/astrowind/main/src/assets/images/app-store.png';
 const appStoreDownloadLink = 'https://github.com/onwidget/astrowind';
+
+const googlePlayImg = 'https://raw.githubusercontent.com/onwidget/astrowind/main/src/assets/images/google-play.png';
 const googlePlayDownloadLink = 'https://github.com/onwidget/astrowind';
+
+const metadata = {
+  title: 'דף הבית של אפליקציה',
+};
 ---
 
 <Layout metadata={metadata}>
   <Fragment slot="header">
-    <Header position="left" links={[]} actions={[]} showToggleTheme={true} showRssFeed={false} />
+    <Header isSticky showToggleTheme />
   </Fragment>
 
   <!-- Hero2 Widget ******************* -->
-  <Hero2
-    tagline="Mobile App Demo"
-    title="Create your mobile app landing page"
-    subtitle="Discover how to create a stunning and effective mobile app landing page with AstroWind's versatile template."
-    actions={[
-      { variant: 'primary', text: 'Get Started', href: '#' },
-      { text: 'Learn more', href: '#features' },
-    ]}
-    image={{
-      src: '~/assets/images/hero-mobile-app.png',
-      alt: 'Mobile App Hero Image',
-    }}
-  />
 
-  <!-- Features Widget **************** -->
-  <Features
+  <Hero2
+    tagline="הדגמת אפליקציה לווב"
+    image={{
+      src: 'https://images.unsplash.com/photo-1535303311164-664fc9ec6532?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80',
+      alt: 'תמונת גיבור AstroWind',
+    }}
+  >
+    <Fragment slot="title">
+      <span class="text-accent dark:text-white">אפליקציית AstroWind</span>: <br /> אתרים מקצועיים <span
+        class="hidden xl:inline">בקלות</span
+      >
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      <span class="hidden sm:inline"> שחרר יצירתיות בלתי מוגבלת בקצות אצבעותיך: השער שלך לעיצוב חדשני. </span>
+      הורד עכשיו והתחל במסע לשדרוג הפרויקטים שלך כמו מעולם לא היה.
+    </Fragment>
+
+    <div slot="actions" class="flex max-w-sm gap-4">
+      <Button variant="link" href={appStoreDownloadLink}>
+        <Image src={appStoreImg} alt="תמונת App Store" width={200} />
+      </Button>
+
+      <Button variant="link" href={googlePlayDownloadLink}>
+        <Image src={googlePlayImg} alt="תמונת Google Play" width={200} />
+      </Button>
+    </div>
+  </Hero2>
+
+  <!-- Features3 Widget ************** -->
+
+  <Features3
     id="features"
-    title="How to use our app?"
-    subtitle="Tired of spending hours crafting documents from scratch? Our app offers an innovative solution. With a wide array of professionally designed templates, you can now create stunning documents in minutes. Explore our templates now and experience the difference."
-    tagline="Step-by-step guide"
+    title="כיצד להשתמש באפליקציה שלנו?"
+    subtitle="נמאס לך לבזבז שעות על יצירת מסמכים מאפס? האפליקציה שלנו מציעה פתרון חדשני. עם מגוון רחב של תבניות מעוצבות באופן מקצועי, תוכל כעת ליצור מסמכים מדהימים תוך דקות. חקור את התבניות שלנו עכשיו וחווה את ההבדל."
+    tagline="מדריך שלב אחר שלב"
     columns={2}
     items={[
       {
-        title: 'Download and install the app',
-        description: `Begin your journey by downloading our user-friendly app from your device's app store or our official website.`,
+        title: 'הורד והתקן את האפליקציה',
+        description: `התחל את המסע שלך על ידי הורדת האפליקציה הידידותית שלנו מחנות האפליקציות של המכשיר שלך או מהאתר הרשמי שלנו.`,
         icon: 'tabler:square-number-1',
       },
       {
-        title: 'Sign up',
-        description:
-          'Create your account by providing the necessary information, enabling you to access our full range of features.',
+        title: 'הירשם',
+        description: 'צור את החשבון שלך על ידי מתן המידע הנדרש, המאפשר לך לגשת למגוון מלא של התכונות שלנו.',
         icon: 'tabler:square-number-2',
       },
       {
-        title: 'Browse templates',
-        description: 'Explore our diverse collection of website templates, categorized for easy navigation.',
+        title: 'עיין בתבניות',
+        description: 'חקור את האוסף המגוון שלנו של תבניות אתרים, מקוטלגות לניווט קל.',
         icon: 'tabler:square-number-3',
       },
       {
-        title: 'Preview and select a template',
-        description: `Visualize the potential of each template through previews, then choose the one that aligns best with your project's needs.`,
+        title: 'צפה בתצוגה מקדימה ובחר תבנית',
+        description: `תדמיין את הפוטנציאל של כל תבנית באמצעות תצוגות מקדימות, ואז בחר את זו שמתאימה הכי טוב לצרכי הפרויקט שלך.`,
         icon: 'tabler:square-number-4',
       },
     ]}
     image={{
       src: 'https://images.unsplash.com/photo-1521517407911-565264e7d82d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80',
-      alt: 'Colorful Image',
+      alt: 'תמונה צבעונית',
     }}
   />
 
   <!-- Content Widget **************** -->
+
   <Content
     isReversed
     items={[
       {
-        title: 'User-friendly interface',
-        description:
-          'An intuitive and easy-to-navigate interface that allows users to quickly browse and find the templates they need.',
+        title: 'ממשק ידידותי למשתמש',
+        description: 'ממשק אינטואיטיבי וקל לניווט המאפשר למשתמשים לגלוש במהירות ולמצוא את התבניות שהם צריכים.',
         icon: 'tabler:wand',
       },
       {
-        title: 'Personalization options',
-        description:
-          'Include basic customization tools that let users modify text, colors, images, and other elements within the templates.',
+        title: 'אפשרויות התאמה אישית',
+        description: 'כולל כלי התאמה בסיסיים המאפשרים למשתמשים לשנות טקסט, צבעים, תמונות ואלמנטים אחרים בתוך התבניות.',
         icon: 'tabler:settings',
       },
       {
-        title: 'Ready-to-use components',
+        title: 'רכיבים מוכנים לשימוש',
         description:
-          'Enhance your designs with ready-to-use elements like graphics, icons, and layouts, saving you time and boosting visual appeal.',
+          'שפר את העיצובים שלך עם אלמנטים מוכנים לשימוש כמו גרפיקה, אייקונים ופריסות, חוסך לך זמן ומשפר את המראה החזותי.',
         icon: 'tabler:template',
       },
       {
-        title: 'Preview Mode',
-        description: 'Provide a preview of each template, allowing users to see how it looks before making a purchase.',
+        title: 'מצב תצוגה מקדימה',
+        description: 'ספק תצוגה מקדימה של כל תבנית, מאפשר למשתמשים לראות איך היא נראית לפני רכישה.',
         icon: 'tabler:carousel-horizontal',
       },
     ]}
     image={{
       src: 'https://images.unsplash.com/photo-1576153192621-7a3be10b356e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1674&q=80',
-      alt: 'Colorful Image',
+      alt: 'תמונה צבעונית',
     }}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Main Features</h3>
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">תכונות עיקריות</h3>
     </Fragment>
   </Content>
 
   <!-- Content Widget **************** -->
+
   <Content
     isAfterContent
     items={[
       {
-        title: 'Offline Access',
-        description: 'Offer the option for users to download purchased templates for offline use.',
+        title: 'גישה ללא אינטרנט',
+        description: 'הצע אפשרות למשתמשים להוריד תבניות שנרכשו לשימוש ללא אינטרנט.',
         icon: 'tabler:wifi-off',
       },
       {
-        title: 'Secure Cloud Storage',
-        description:
-          'Provide cloud storage for purchased templates, ensuring users can access and back up their templates from anywhere securely.',
+        title: 'אחסון בטוח בענן',
+        description: 'ספק אחסון בענן לתבניות שנרכשו, מבטיח שמשתמשים יכולים לגשת ולגבות את התבניות שלהם מכל מקום בבטחה.',
         icon: 'tabler:file-download',
       },
       {
-        title: 'Regular Updates',
-        description: 'Continuously add new templates and features to keep the app fresh and engaging for users.',
+        title: 'עדכונים קבועים',
+        description: 'הוסף באופן רציף תבניות ותכונות חדשות כדי לשמור על האפליקציה רעננה ומעניינת למשתמשים.',
         icon: 'tabler:refresh',
       },
       {
-        title: 'Wishlist',
-        description: `Allow users to create a wishlist of templates they're interested in, making it easier for them to revisit and potentially purchase later.`,
+        title: 'רשימת משאלות',
+        description: `אפשר למשתמשים ליצור רשימת משאלות של תבניות שמעניינות אותם, מקל עליהם לחזור ואולי לרכוש מאוחר יותר.`,
         icon: 'tabler:heart',
       },
     ]}
     image={{
       src: 'https://images.unsplash.com/photo-1453738773917-9c3eff1db985?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Vintage Image',
+      alt: "תמונה וינטג'",
     }}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Other features</h3>
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">תכונות נוספות</h3>
     </Fragment>
   </Content>
 
   <!-- Stats Widget ****************** -->
+
   <Stats
-    title="Statistics of our app"
+    title="סטטיסטיקות של האפליקציה שלנו"
     stats={[
       { amount: '20K', icon: 'tabler:download' },
       { amount: '18.5K', icon: 'tabler:users' },
@@ -163,90 +182,93 @@ const googlePlayDownloadLink = 'https://github.com/onwidget/astrowind';
   />
 
   <!-- Testimonials Widget *********** -->
+
   <Testimonials
-    title="What our users say?"
+    title="מה המשתמשים שלנו אומרים?"
     testimonials={[
       {
-        testimonial: `It's made exploring and downloading website templates a breeze. The interface is intuitive, and I had no trouble finding the perfect template for my project. It's an app that truly empowers users.`,
-        name: 'Cary Kennedy',
-        job: 'Film director',
+        testimonial: `האפליקציה הפכה את החיפוש והורדת תבניות לאתרים לקלים. הממשק אינטואיטיבי, ולא היה לי קושי למצוא את התבנית המושלמת לפרויקט שלי. זו אפליקציה שבאמת מעצימה משתמשים.`,
+        name: 'קארי קנדי',
+        job: 'במאי סרטים',
         image: {
           src: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-          alt: 'Cary Kennedy Image',
+          alt: 'תמונת קארי קנדי',
         },
       },
       {
-        testimonial: `The app's seamless download process and intuitive layout have made selecting templates an enjoyable experience. Being able to preview and experiment with different designs before committing has saved me time and ensured I get the perfect look for my website.`,
-        name: 'Josh Wilkinson',
-        job: 'Product Manager',
+        testimonial: `תהליך ההורדה החלק והפריסה האינטואיטיבית של האפליקציה הפכו את בחירת התבניות לחוויה נעימה. היכולת לראות ולהתנסות בעיצובים שונים לפני התחייבות חסכה לי זמן והבטיחה שאקבל את המראה המושלם לאתר שלי.`,
+        name: 'ג׳וש ווילקינסון',
+        job: 'מנהל מוצר',
         image: {
           src: 'https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-          alt: 'Josh Wilkinson Image',
+          alt: 'תמונת ג׳וש ווילקינסון',
         },
       },
       {
         testimonial:
-          'I was able to download and use a professional website template within minutes. The step-by-step process and user-friendly interface made it easy for me to create a website that looks as if it was designed by a pro.',
-        name: 'Sidney Hansen',
-        job: 'Decorator',
+          'הצלחתי להוריד ולהשתמש בתבנית אתר מקצועית תוך דקות. התהליך שלב אחר שלב והממשק הידידותי למשתמש הקלו עלי ליצור אתר שנראה כאילו עוצב על ידי מקצוען.',
+        name: 'סידני הנסן',
+        job: 'מעצב פנים',
         image: {
           src: 'https://images.unsplash.com/photo-1512361436605-a484bdb34b5f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-          alt: 'Sidney Hansen Image',
+          alt: 'תמונת סידני הנסן',
         },
       },
     ]}
     callToAction={{
       target: '_blank',
-      text: 'Read more testimonials',
+      text: 'קרא עוד חוות דעת',
       href: 'https://github.com/onwidget/astrowind',
       icon: 'tabler:chevron-right',
     }}
   />
 
   <!-- FAQs Widget ******************* -->
+
   <FAQs
-    title="Still have some doubts?"
+    title="עדיין יש לך ספקות?"
     items={[
       {
-        title: 'What does this app do?',
+        title: 'מה האפליקציה הזו עושה?',
         description:
-          'This app provides a platform for you to easily browse, purchase, download, and use a wide range of website templates for your projects.',
+          'אפליקציה זו מספקת פלטפורמה המאפשרת לך לעיין בקלות, לרכוש, להוריד ולהשתמש במגוון רחב של תבניות אתרים לפרויקטים שלך.',
       },
       {
-        title: 'How can this app solve my problem?',
+        title: 'כיצד אפליקציה זו יכולה לפתור את הבעיה שלי?',
         description:
-          'This app streamlines the process of finding and implementing professional website designs, saving you time and effort in creating visually appealing and functional websites.',
+          'אפליקציה זו מפשטת את תהליך מציאת ויישום עיצובי אתרים מקצועיים, חוסכת לך זמן ומאמץ ביצירת אתרים אסתטיים ופונקציונליים.',
       },
       {
-        title: 'Is it available for my device?',
-        description: `Our app is designed for compatibility across various devices and platforms, ensuring accessibility whether you're using a smartphone, tablet, or computer.`,
+        title: 'האם היא זמינה למכשיר שלי?',
+        description: `האפליקציה שלנו מתוכננת לתאימות במגוון מכשירים ופלטפורמות, מבטיחה נגישות בין אם אתה משתמש בסמארטפון, טאבלט או מחשב.`,
       },
       {
-        title: 'What makes this app different from others?',
+        title: 'מה הופך את האפליקציה הזו לשונה מאחרות?',
         description:
-          'Our app stands out for its user-friendly interface, extensive template collection, and seamless integration of the purchasing and downloading process, making it highly efficient.',
+          'האפליקציה שלנו בולטת בממשק ידידותי למשתמש, אוסף תבניות נרחב ואינטגרציה חלקה של תהליך הרכישה וההורדה, מה שהופך אותה ליעילה במיוחד.',
       },
       {
-        title: 'Are there any costs involved?',
+        title: 'האם יש עלויות מעורבות?',
         description:
-          'While the app itself may be free to download, there may be costs associated with purchasing specific templates based on your preferences and project requirements.',
+          'בעוד שהורדת האפליקציה עצמה עשויה להיות חינם, ייתכנו עלויות הקשורות לרכישת תבניות ספציפיות בהתאם להעדפותיך ולדרישות הפרויקט שלך.',
       },
     ]}
   />
 
   <!-- CallToAction Widget *********** -->
+
   <CallToAction
     id="download"
-    title="Download our app now!"
-    subtitle="Access a variety of stunning templates, simplify your creative process, and elevate your online presence."
+    title="הורד את האפליקציה שלנו עכשיו!"
+    subtitle="גש למגוון תבניות מדהימות, פשט את תהליך היצירה שלך, והעלה את הנוכחות המקוונת שלך."
   >
     <div slot="actions" class="flex max-w-sm gap-4">
       <Button variant="link" href={appStoreDownloadLink}>
-        <Image src={appStoreImg} alt="App Store Image" width={200} height={60} />
+        <Image src={appStoreImg} alt="תמונת App Store" width={200} />
       </Button>
 
       <Button variant="link" href={googlePlayDownloadLink}>
-        <Image src={googlePlayImg} alt="Google Play Image" width={200} height={60} />
+        <Image src={googlePlayImg} alt="תמונת Google Play" width={200} />
       </Button>
     </div>
   </CallToAction>

@@ -1,5 +1,6 @@
 ---
 import '~/assets/styles/tailwind.css';
+import '~/assets/styles/base.css';
 
 import { I18N } from 'astrowind:config';
 
@@ -22,11 +23,11 @@ export interface Props {
 }
 
 const { metadata = {} } = Astro.props;
-const { language, textDirection } = I18N;
+const { language, textDirection = 'rtl' } = I18N;
 ---
 
 <!doctype html>
-<html lang={language} dir={textDirection} class="2xl:text-[20px]">
+<html lang={language} dir={textDirection} class="2xl:text-[20px] rtl:text-right">
   <head>
     <CommonMeta />
     <Favicons />
@@ -44,5 +45,11 @@ const { language, textDirection } = I18N;
     <slot />
 
     <BasicScripts />
+
+    <style is:global>
+      img {
+        content-visibility: auto;
+      }
+    </style>
   </body>
 </html>

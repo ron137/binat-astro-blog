@@ -1,0 +1,29 @@
+---
+import { Icon } from 'astro-icon/components';
+
+export interface Props {
+  title?: string;
+  isSticky?: boolean;
+  showIcon?: boolean;
+}
+
+const {
+  title = "This site is currently in beta. We're actively improving our content.",
+  isSticky = false,
+  showIcon = true,
+} = Astro.props;
+---
+
+<div
+  class:list={[
+    'text-center p-2.5 text-sm',
+    'bg-blue-900 text-white dark:bg-blue-800',
+    { sticky: isSticky, relative: !isSticky },
+  ]}
+>
+  <a href="#" class="hover:underline flex items-center justify-center gap-1">
+    {showIcon && <Icon name="tabler:info-circle" class="w-4 h-4 inline-block" />}
+    {title}
+  </a>
+</div>
+
