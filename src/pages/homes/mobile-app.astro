@@ -16,10 +16,9 @@ const metadata = {
   title: 'Mobile App Homepage Demo',
 };
 
-const appStoreImg = 'https://raw.githubusercontent.com/onwidget/.github/main/resources/astrowind/appstore.png';
+const appStoreImg = '~/assets/images/app-store.png';
+const googlePlayImg = '~/assets/images/google-play.png';
 const appStoreDownloadLink = 'https://github.com/onwidget/astrowind';
-
-const googlePlayImg = 'https://raw.githubusercontent.com/onwidget/.github/main/resources/astrowind/googleplay.png';
 const googlePlayDownloadLink = 'https://github.com/onwidget/astrowind';
 ---
 
@@ -243,11 +242,11 @@ const googlePlayDownloadLink = 'https://github.com/onwidget/astrowind';
   >
     <div slot="actions" class="flex max-w-sm gap-4">
       <Button variant="link" href={appStoreDownloadLink}>
-        <Image src={appStoreImg} alt="App Store Image" width={200} />
+        <Image src={appStoreImg} alt="App Store Image" width={200} height={60} />
       </Button>
 
       <Button variant="link" href={googlePlayDownloadLink}>
-        <Image src={googlePlayImg} alt="Google Play Image" width={200} />
+        <Image src={googlePlayImg} alt="Google Play Image" width={200} height={60} />
       </Button>
     </div>
   </CallToAction>
